@@ -357,7 +357,7 @@ async def monitor_servers_loop():
             await asyncio.sleep(sleep_time)
 
 length_predictor = None 
-MLP_MODEL_DIR = "/path/to/models/mlp_baseline"
+MODEL_DIR = "/path/to/models"
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -373,7 +373,7 @@ async def lifespan(app: FastAPI):
     try:
 
         global length_predictor
-        length_predictor = MLPPredictor(MLP_MODEL_DIR)
+        length_predictor = LengthPredictor(MODEL_DIR)
         
         if length_predictor.is_loaded:
             logger.info("successfully loaded length predictor model")
